@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinanceAI - Seu Assistente Financeiro</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.pluggy.ai/pluggy-connect/v2.8.0/pluggy-connect.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>FinanceAI</h1>
+            <div class="balance-card">
+                <p class="balance-label">Saldo Total</p>
+                <h2 class="balance-amount" id="totalBalance">R$ 0,00</h2>
+            </div>
+        </header>
+
+        <main>
+            <div class="bank-connection-section">
+                <button class="connect-bank-btn" onclick="bankIntegration.connectBank()">
+                    🏦 Conectar Banco
+                </button>
+                <div id="connectedBanksList" class="connected-banks-list">
+                    <p class="empty-state">Nenhum banco conectado</p>
+                </div>
+            </div>
+
+            <div class="voice-assistant">
+                <div class="voice-circle" id="voiceCircle">
+                    <svg width="80" height="80" viewBox="0 0 80 80">
+                        <circle cx="40" cy="40" r="35" class="pulse-ring"/>
+                    </svg>
+                    <div class="mic-icon">🎤</div>
+                </div>
+                <p class="voice-status" id="voiceStatus">Toque para falar</p>
+                <p class="voice-transcript" id="transcript"></p>
+            </div>
+
+            <div class="month-selector">
+                <button class="month-btn" id="prevMonth">←</button>
+                <h3 id="currentMonth">Mês Atual</h3>
+                <button class="month-btn" id="nextMonth">→</button>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card income">
+                    <span class="stat-icon">↑</span>
+                    <div>
+                        <p class="stat-label">Receitas</p>
+                        <p class="stat-value" id="totalIncome">R$ 0,00</p>
+                    </div>
+                </div>
+                <div class="stat-card expense">
+                    <span class="stat-icon">↓</span>
+                    <div>
+                        <p class="stat-label">Despesas</p>
+                        <p class="stat-value" id="totalExpense">R$ 0,00</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="transactions-section">
+                <h3>Transações Recentes</h3>
+                <div class="transactions-list" id="transactionsList">
+                    <p class="empty-state">Nenhuma transação ainda. Fale comigo para começar!</p>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="bank-integration.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Exibir contas conectadas ao carregar
+        window.addEventListener('DOMContentLoaded', () => {
+            bankIntegration.displayConnectedAccounts();
+        });
+    </script>
+</body>
+</html>
